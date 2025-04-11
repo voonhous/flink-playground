@@ -11,6 +11,8 @@ services:
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
         taskmanager.numberOfTaskSlots: 2
+        state.checkpoint-storage: filesystem
+        state.checkpoints.dir: file:///opt/flink/examples/hudi_demo/checkpoints
         state.savepoints.dir: file:///opt/flink/examples/hudi_demo/savepoints
     volumes:
       - ./hudi_demo:/opt/flink/examples/hudi_demo
@@ -28,6 +30,8 @@ services:
         jobmanager.rpc.address: jobmanager
         rest.address: jobmanager
         rest.port: 8082
+        state.checkpoint-storage: filesystem
+        state.checkpoints.dir: file:///opt/flink/examples/hudi_demo/checkpoints
         state.savepoints.dir: file:///opt/flink/examples/hudi_demo/savepoints
     volumes:
       - ./test_scripts:/opt/flink/examples/test_scripts

@@ -1,0 +1,7 @@
+# Ignore hudi_demo and hudi_jars directories
+hudi_demo/
+hudi_jars/
+
+# Ignore macOS .DS_Store files
+.DS_Store
+
