@@ -51,6 +51,3 @@ with (
 
 insert into t1 select * from sourceT;
 insert into t1_2 select * from sourceT;
-
-set sql-client.execution.result-mode=tableau;
-select * from t1 limit 20;
