@@ -1,0 +1,34 @@
+services:
+  taskmanager:
+    image: hudi_local_tests:flink1.18__hudi_1.0.2
+    hostname: taskmanager
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    scale: 4
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 2
+        state.savepoints.dir: file:///opt/flink/examples/hudi_demo/savepoints
+    volumes:
+      - ./hudi_demo:/opt/flink/examples/hudi_demo
+
+  jobmanager:
+    image: hudi_local_tests:flink1.18__hudi_1.0.2
+    container_name: jobmanager
+    hostname: jobmanager
+    ports:
+      - "8082:8082"
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        rest.address: jobmanager
+        rest.port: 8082
+        state.savepoints.dir: file:///opt/flink/examples/hudi_demo/savepoints
+    volumes:
+      - ./test_scripts:/opt/flink/examples/test_scripts
+      - ./hudi_demo:/opt/flink/examples/hudi_demo

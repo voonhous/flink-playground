@@ -1,0 +1,16 @@
+FROM flink:1.18.1-scala_2.12-java8
+
+# Install Hudi connector dependencies (https://www.decodable.co/blog/catalogs-in-flink-sql-hands-on)
+RUN mkdir -p /opt/flink/lib
+RUN wget -P /opt/flink/lib https://repo1.maven.org/maven2/org/apache/hudi/hudi-flink1.18-bundle/0.15.0/hudi-flink1.18-bundle-0.15.0.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/com/fasterxml/woodstox/woodstox-core/5.3.0/woodstox-core-5.3.0.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/org/codehaus/woodstox/stax2-api/4.2.1/stax2-api-4.2.1.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar  && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/commons-configuration/commons-configuration/1.6/commons-configuration-1.6.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-auth/2.10.2/hadoop-auth-2.10.2.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-common/2.10.2/hadoop-common-2.10.2.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-hdfs-client/2.10.2/hadoop-hdfs-client-2.10.2.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-core/2.10.2/hadoop-mapreduce-client-core-2.10.2.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/com/google/guava/guava/11.0.2/guava-11.0.2.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.jar && \
+	wget -P /opt/flink/lib https://repo1.maven.org/maven2/org/apache/htrace/htrace-core4/4.1.0-incubating/htrace-core4-4.1.0-incubating.jar
